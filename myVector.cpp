@@ -12,7 +12,7 @@ template <typename type> class myVector{
         void resize(long long int n, type x); // the same as overload constructor
         long long int getSize(); // return size
         long long int getCapacity(); // return capacity
-        type* begin(); //pointer for 1st element
+        type* begin(); //pointer for 1st element 
         type* end(); //pointer for last + 1 element
         void push_back(type x); // add new element to end
         void pop_back(); // delete element from end
