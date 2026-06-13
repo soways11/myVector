@@ -2,28 +2,28 @@ template <typename type> class myVector{
     private:
         long long int size;
         long long int capacity;
-        void prResize(); // set capacity = 2 * size and resize array and 
+        void prResize(); // set capacity = 2 * size and relocate memory
     public:
         type* elements;
-        myVector(long long int n = 0); // base constructor with size or stardant size = 0
-        myVector(long long int n, type x); // overload constructor with size and standart element
-        ~myVector(); // destructor: deleting pointer for array
+        myVector(long long int n = 0); // base constructor with set size or stardant size = 0
+        myVector(long long int n, type x); // overloaded constructor with set size and standart element
+        ~myVector(); // destructor: deleting pointer to array
         void resize(long long int n = 0); // the same as base constructor
-        void resize(long long int n, type x); // the same as overload constructor
+        void resize(long long int n, type x); // the same as overloaded constructor
         long long int getSize(); // return size
         long long int getCapacity(); // return capacity
-        type* begin(); //pointer for 1st element 
-        type* end(); //pointer for last + 1 element
+        type* begin(); //pointer to 1st element 
+        type* end(); //pointer to (last + 1) element
         void push_back(type x); // add new element to end
         void pop_back(); // delete element from end
-        void push_front(type x); // add new element to begin
-        void pop_front(); // delete element from begin
+        void push_front(type x); // add new element to begin of array
+        void pop_front(); // delete element from begin of array
         void insert(type x, long long int pos); // insert element on position pos
         void erase(long long int pos, long long int count = 1); // erase count elements from position pos
         long long int find(type x); // find element in array or return -1
-        long long int find(type x, long long int st, long long int fin); // overloading find with start and finish
-        long long int count(type x);  // count how many elemnets array contains
-        long long int count(type x, long long int st, long long int fin); // overloading find with start and finish
+        long long int find(type x, long long int st, long long int fin); // overloaded find with start and finish
+        long long int count(type x);  // count how many elements array contains
+        long long int count(type x, long long int st, long long int fin); // overloaded find with start and finish
 };
 template <typename type> myVector<type>::myVector(long long int n){
     elements = new type[n]; // allocate memory
