@@ -14,10 +14,10 @@ template <typename type> class myVector{
         long long int getCapacity(); // return capacity
         type* begin(); //pointer to 1st element 
         type* end(); //pointer to (last + 1) element
-        void push_back(type x); // add new element to end
-        void pop_back(); // delete element from end
-        void push_front(type x); // add new element to begin of array
-        void pop_front(); // delete element from begin of array
+        void pushBack(type x); // add new element to end
+        void popBack(); // delete element from end
+        void pushFront(type x); // add new element to begin of array
+        void popFront(); // delete element from begin of array
         void insert(type x, long long int pos); // insert element on position pos
         void erase(long long int pos, long long int count = 1); // erase count elements from position pos
         long long int find(type x); // find element in array or return -1
@@ -77,20 +77,20 @@ template <typename type> void myVector<type>::resize(long long int n, type x){
     size = n;
     capacity = n;
 }
-template <typename type> void myVector<type>::push_back(type x){
+template <typename type> void myVector<type>::pushBack(type x){
     size = size + 1;
     if (size >= capacity){
         prResize(); // resize if array cant save new variable
     }
     elements[size-1] = x;
 }
-template <typename type> void myVector<type>::pop_back(){
+template <typename type> void myVector<type>::popBack(){
     size = size - 1;
     if (size*4 <= capacity){
         prResize(); // resize if capacity >= 4 * size
     }
 }
-template <typename type> void myVector<type>::push_front(type x){
+template <typename type> void myVector<type>::pushFront(type x){
     size = size + 1;
     if (size >= capacity){
         prResize(); // resize if array can't save new variable
@@ -100,7 +100,7 @@ template <typename type> void myVector<type>::push_front(type x){
     }
     elements[0] = x;
 }
-template <typename type> void myVector<type>::pop_front(){
+template <typename type> void myVector<type>::popFront(){
     size = size - 1;
     for (int i = 0; i < size; i++){
         elements[i] = elements[i+1];
