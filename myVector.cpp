@@ -39,7 +39,7 @@ template <typename type> myVector<type>::myVector(long long int n, type x){
     capacity = n;
 }
 template <typename type> myVector<type>::~myVector(){
-    delete [] elements; // free memory
+    delete [] elements; // deallocate memory of array
 }
 template <typename type> void myVector<type>::prResize(){
     type* xelements = elements; // change variable, that contains pointer for array
@@ -47,7 +47,7 @@ template <typename type> void myVector<type>::prResize(){
     for (int i = 0; i < size - 1 ; i++){
         elements[i] = xelements[i];
     }
-    delete [] xelements; // free memory of old array
+    delete [] xelements; // deallocate memory of old array
     capacity = 2 * size;
 }
 template <typename type> long long int myVector<type>::getSize(){
@@ -63,13 +63,13 @@ template <typename type> type* myVector<type>::end(){
     return elements + size;
 }
 template <typename type> void myVector<type>::resize(long long int n){
-    delete [] elements; // free memory of old array
+    delete [] elements; // deallocate memory of old array
     elements = new type[n]; // allocate memory for new array
     size = n;
     capacity = n;
 }
 template <typename type> void myVector<type>::resize(long long int n, type x){
-    delete [] elements; // free memory of old array
+    delete [] elements; // deallocate memory of old array
     elements = new type[n]; // allocate memory for new array
     for (int i = 0; i < n; i++){
         elements[i] = x;
@@ -93,7 +93,7 @@ template <typename type> void myVector<type>::pop_back(){
 template <typename type> void myVector<type>::push_front(type x){
     size = size + 1;
     if (size >= capacity){
-        prResize(); // resize if array cant save new variable
+        prResize(); // resize if array can't save new variable
     }
     for (int i = size - 1; i > 0; i--){
         elements[i] = elements[i-1];
@@ -112,7 +112,7 @@ template <typename type> void myVector<type>::pop_front(){
 template <typename type> void myVector<type>::insert(type x, long long int pos){
     size = size + 1;
     if (size >= capacity){
-        prResize(); // resize if array cant save new variable
+        prResize(); // resize if array can't save new variable
     }
     for (int i = size - 1; i > pos; i--){
         elements[i] = elements[i-1];
