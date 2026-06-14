@@ -25,6 +25,15 @@ template <typename type> class myVector{
         long long int count(type x);  // count how many elements array contains
         long long int count(type x, long long int st, long long int fin); // overloaded find with start and finish
 };
+template <typename type> void myVector<type>::prResize(){
+    type* xelements = elements; // change variable, that contains pointer for array
+    elements = new type[size * 2]; // allocate memory for new array
+    for (int i = 0; i < size - 1 ; i++){
+        elements[i] = xelements[i];
+    }
+    delete [] xelements; // deallocate memory of old array
+    capacity = 2 * size;
+}
 template <typename type> myVector<type>::myVector(long long int n){
     elements = new type[n]; // allocate memory
     size = n;
@@ -40,15 +49,6 @@ template <typename type> myVector<type>::myVector(long long int n, type x){
 }
 template <typename type> myVector<type>::~myVector(){
     delete [] elements; // deallocate memory of array
-}
-template <typename type> void myVector<type>::prResize(){
-    type* xelements = elements; // change variable, that contains pointer for array
-    elements = new type[size * 2]; // allocate memory for new array
-    for (int i = 0; i < size - 1 ; i++){
-        elements[i] = xelements[i];
-    }
-    delete [] xelements; // deallocate memory of old array
-    capacity = 2 * size;
 }
 template <typename type> long long int myVector<type>::getSize(){
     return size;
@@ -85,7 +85,7 @@ template <typename type> void myVector<type>::push_back(type x){
     elements[size-1] = x;
 }
 template <typename type> void myVector<type>::pop_back(){
-    size -= 1;
+    size = size - 1;
     if (size*4 <= capacity){
         prResize(); // resize if capacity >= 4 * size
     }
@@ -120,10 +120,10 @@ template <typename type> void myVector<type>::insert(type x, long long int pos){
     elements[pos] = x;
 }
 template <typename type> void myVector<type>::erase(long long int pos, long long int count){
+    size = size - count;
     for (int i = pos; i < pos + count; i++){
         elements[i] = elements[i + count];
     }
-    size = size - count;
     if (size*4 <= capacity){
         prResize(); // resize if capacity >= 4 * size
     }
